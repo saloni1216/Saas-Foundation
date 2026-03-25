@@ -11,6 +11,7 @@ def home_page_view(request, *args, **kwargs):
     page_title = "HomePage-Saas"
     total_visits = PageVisit.objects.all()
     page_visits = PageVisit.objects.filter(path=request.path)
+    html_ = "home.html"
     context_page ={
         "page_title": page_title,
         "total_page_visits": total_visits.count(),
@@ -19,7 +20,6 @@ def home_page_view(request, *args, **kwargs):
 
     }
 
-    html_ = "home.html"
     PageVisit.objects.create(path=request.path)
     return render(request, html_, context_page)
 
